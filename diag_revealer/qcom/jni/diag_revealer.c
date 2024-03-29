@@ -412,12 +412,12 @@ write_commands (int fd, BinaryBuffer *pbuf_write)
 		if (len >= 3) {
 			// memcpy(send_buf + 4, p + i, len);
 			memcpy(send_buf + offset, p + i, len);
-			//LOGD("Writing %d bytes of data\n", len + 4);
+			LOGD("Writing %d bytes of data\n", len + offset);
 			//print_hex(send_buf, len + 4);
 			fflush(stdout);
 			// int ret = write(fd, (const void *) send_buf, len + 4);
 			int ret = write(fd, (const void *) send_buf, len + offset);
-			//LOGD("write_commands: ret=%d\n", ret);
+			LOGD("write_commands: ret=%d\n", ret);
 			if (ret < 0) {
 				LOGE("write_commands error (len=%lu, offset=%lu): %s\n", len, offset, strerror(errno));
 				return -1;
@@ -428,17 +428,17 @@ write_commands (int fd, BinaryBuffer *pbuf_write)
 			 *  (1) Ensure every config commands succeeds (otherwise read() will be blocked)
 			 *  (2) Clean up the buffer, thus avoiding pollution of later real cellular logs
 			 */
-			// LOGD("Before read\n");
+			LOGD("Before read\n");
 			int read_len = read(fd, buf_read, sizeof(buf_read));
 			if (read_len < 0) {
 				LOGE("write_commands read error: %s\n", strerror(errno));
 				return -1;
 			} else {
-				// LOGD("Reading %d bytes of resp\n", read_len);
-				// LOGD("write_commands responses\n");
+				LOGD("Reading %d bytes of resp\n", read_len);
+				LOGD("write_commands responses\n");
 				// print_hex(buf_read, read_len);
 			}
-			// LOGD("After read\n");
+			LOGD("After read\n");
 		}
 		i += len;
 	}
