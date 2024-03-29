@@ -166,8 +166,9 @@ if __name__ == '__main__':
 
     try:
         with open("./config/config.yml", 'r') as ymlfile:
-            cfg = yaml.load(ymlfile)
-    except BaseException:
+            cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
+    except BaseException as e:
+        print(e)
         print("Compilation environment is not configured!\nRunning make config automatically for you...")
         run_config()
         sys.exit()
