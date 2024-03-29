@@ -66,6 +66,7 @@ def run_apk(build_release):
         + ' --copy-libs' \
         + ' --name={}'.format(cfg['app_name']) \
         + ' --dist-name={}'.format(cfg['dist_name']) \
+        + ' --bootstrap={}'.format(cfg['bootstrap']) \
         + ' --storage-dir={}'.format(cfg['p4a_path']) \
         + ' --version={}'.format(cfg['app_version']) \
         + ' --private={}/{}'.format(cfg['mi_dev_path'], cfg['app_path']) \
